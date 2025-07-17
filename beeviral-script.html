@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beeviral Widget</title>
+</head>
+<body>
+  <div id="app_cw_widget"></div>
+
+  <script>
+    (function () {
+      const widgetId = "app_cw_widget";
+      const widgetCode = "UU5jcXdBUUNHRGpkdnNSam1OVXdXdz09";
+      const scriptUrl = "https://account.beeviral.app/Scripts/app/tracking_widget.js";
+
+      function loadBeeviralWidget() {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = `${scriptUrl}?t=${Date.now()}`;
+
+        script.onload = function () {
+          if (window.beeviralWidget && typeof window.beeviralWidget.Init === "function") {
+            window.beeviralWidget.Init({
+              element: widgetId,
+              code: widgetCode
+            }, false);
+          }
+        };
+
+        const ref = document.getElementsByTagName("script")[0];
+        ref.parentNode.insertBefore(script, ref);
+      }
+
+      document.addEventListener("DOMContentLoaded", loadBeeviralWidget);
+    })();
+  </script>
+</body>
+</html>
